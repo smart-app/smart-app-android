@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width = device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title></title>
+    <link rel="stylesheet" href="../resource/css/common-5a02dbe297.css">
+    <link rel="stylesheet" href="../../../framework/vendor/swiper/css/swiper.css">
+</head>
+<body>
+<div class="code">
+
+    <div id="loading" class="loading" style="top:-120px">
+        <span class="outer"></span>
+    </div>
+
+
+    <script id="swiperTemplate" type="text/html">
+        <div class="swiper-container" style="height: {{swiper.height}}px">
+            <div class="swiper-wrapper">
+                {{each swiper.list}}
+                <div class="swiper-slide">
+                    <img src="{{$value.logo}}" width="{{swiper.width}}" height="{{swiper.height}}" />
+                </div>
+                {{/each}}
+            </div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination"></div>
+        </div>
+    </script>
+
+    <script id="dataTemplate" type="text/html">
+        <div class="panel">
+            <div class="hd"><h2>{{data.title}}</h2>
+                <div class="more"><a href="#"></a></div>
+            </div>
+            <ul class="list">
+                {{each data.list}}
+                <li class="activeable list-item" onclick="Home.openWindow('{{$value.ArticleId}}','{{$value.Title}}')">
+                    <img src="{{$value.icon}}" class="item-logo">
+
+                    <div class="item-desc">
+                        <h2 class="item-title">{{$value.Title}}</h2>
+
+                        <p class="item-info">
+                            <span class="item-left">{{$value.Summary}}</span><span class="item-right"></span>
+                        </p>
+
+                        <p class="item-time">{{$value.CreateDate}}</p>
+                    </div>
+                </li>
+                {{/each}}
+            </ul>
+        </div>
+    </script>
+
+    <div id="swiperPanel"></div>
+    <div id="recommendList"></div>
+    <div id="newList"></div>
+    <div id="hotList" style="padding-bottom: 120px;background-color: white"></div>
+</div>
+
+<script src="../../../framework/common/common-783023b9b6.js"></script>
+<script src="../../../framework/artTemplate/art-bc7828ee49.js"></script>
+<script src="../../../framework/bridge/bridge-eca40e25d8.js"></script>
+<script src="../../../framework/vendor/swiper/js/swiper.js"></script>
+<script src="../resource/js/api-84e89c669f.js"></script>
+<script>!function(e){var i={init:function(){API.getList("list.php","list",89,116,0,1,5,1,function(e){var i=9*document.body.clientWidth/16,t={width:i,heigth:9*i/16,list:JSON.parse(e)};View.render("swiperPanel","swiper",t);new Swiper(".swiper-container",{pagination:".swiper-pagination",slidesPerView:1,paginationClickable:!0,spaceBetween:30,loop:!0});View.get("loading").style.display="none"}),API.getList("latest.php","rec",0,0,0,1,10,1,function(e){var i={title:"编辑推荐",list:JSON.parse(e)};View.render("recommendList","data",i),View.get("loading").style.display="none"}),API.getList("latest.php","new",0,0,0,1,10,1,function(e){var i={title:"最新文章",list:JSON.parse(e)};View.render("newList","data",i)}),API.getList("hot.php","hot",0,0,0,1,10,1,function(e){var i={title:"热门文章",list:JSON.parse(e)};View.render("hotList","data",i)})},openWindow:function(e,i){var t="file:///android_asset/app/web/codehelp/detail/detail.html?id="+e+"&title="+encodeURIComponent(i);SmartNativeAPI.openWindow(i,t,{},"common")}};i.init(),e.Home=i}(window);</script>
+
+</body>
+</html>

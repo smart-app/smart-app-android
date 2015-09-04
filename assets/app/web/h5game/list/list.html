@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width = device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title></title>
+    <link rel="stylesheet" href="../../../resource/css/global-022e376e21.css">
+</head>
+<body style="background-color: #F6F6F6;">
+
+<div id="loading" class="loading">
+    <span class="outer"></span>
+</div>
+
+<script id="dataTemplate" type="text/html">
+    <div class="panel">
+        {{each data.list}}
+        <div class="item-game">
+            <div class="pic"><img src="{{$value.gameIcon}}" width="60" height="60" alt=""></div>
+            <div class="con">
+                <div class="name">{{$value.longName}}</div>
+                <div class="info">{{$value.categoryName}}<span class="space">|</span>{{$value.hitCount}}人玩</div>
+                <div class="info">
+                    <p class="start-system">
+                        <span class="good"></span>
+                        <span class="good"></span>
+                        <span class="good"></span>
+                        <span class="soso"></span>
+                        <span></span>
+                    </p>({{$value.score}})
+                </div>
+            </div>
+            <div class="btns" onclick="Home.openWindow('{{$value.gameId}}','{{$value.shortName}}','{{$value.gameUrl}}')"><span class="btn-primary-green">玩一玩</span></div>
+        </div>
+        {{/each}}
+    </div>
+</script>
+
+<div>
+    <div id="listPanel"></div>
+    <div id="pagerBottom" style="display:none; font-size: 13px; height: 40px;line-height: 40px;text-align: center;vertical-align: middle"></div>
+</div>
+
+
+
+<script src="../../../framework/common/common-783023b9b6.js"></script>
+<script src="../../../framework/artTemplate/art-bc7828ee49.js" ></script>
+<script src="../../../framework/bridge/bridge-eca40e25d8.js" ></script>
+<script src="../../../framework/component/pager/pager.js" ></script>
+<script>!function(i){var t={domain:"http://999game.sinaapp.com/api/",getList:function(i,t,n,e,a,o){SmartNativeAPI.httpPost(this.domain+"list.php",{action:"list",freeId:t,i:n,p:e,o:a},function(i){console.log(">>>getList response:"+JSON.stringify(i)),o(i)})},init:function(){var i=new Pager;i.init(function(n){t.getList(0,0,i.pageIndex,i.pageSize,1,function(i){var t={list:JSON.parse(i)};View.render("listPanel","data",t),n(0==t.list.length)})})},openWindow:function(i,t,n){SmartNativeAPI.openWindow(t,n,{gameId:i,gameName:t},"common")}};t.init(),i.List=t}(window);</script>
+</body>
+</html>

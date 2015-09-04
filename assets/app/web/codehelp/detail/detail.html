@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width = device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title></title>
+    <link rel="stylesheet" href="../../../resource/css/global-022e376e21.css">
+</head>
+<body style="background-color: #F6F6F6;">
+
+<div id="loading" class="loading">
+    <span class="outer"></span>
+</div>
+
+<h1 id="title" style="text-align: center;font-size: 16px; margin: 24px 0px"></h1>
+<div id="content" style="margin: 16px 16px"></div>
+
+
+<script src="../../../framework/common/common-783023b9b6.js"></script>
+<script src="../../../framework/bridge/bridge-eca40e25d8.js" ></script>
+<script src="../resource/js/api-84e89c669f.js"></script>
+<script>!function(t){var e=Utils.getParameter("id"),i=Utils.getParameter("title");Dom.setHtml("title",i),API.getDetail(e,function(t){Dom.closeLoading(),Dom.setHtml("content",t)})}(window);</script>
+</body>
+</html>

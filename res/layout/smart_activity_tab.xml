@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:background="@color/light_gray"
+              android:orientation="vertical">
+
+    <include android:id="@+id/header" layout="@layout/smart_activity_standard_header"></include>
+
+
+    <RelativeLayout style="@style/smart_tab_style">
+
+        <RadioGroup
+                android:id="@+id/tabGroup"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="horizontal">
+        </RadioGroup>
+
+
+        <View
+                android:layout_width="fill_parent"
+                android:layout_height="1px"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/smart_tab_indicator_color"/>
+
+
+        <View
+                android:id="@+id/tabIndicator"
+                android:layout_width="90dp"
+                android:layout_height="3dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="1px"
+                android:background="@drawable/smart_tab_indicator_color"/>
+    </RelativeLayout>
+
+    <com.smart.app.framework.ui.control.tab.SmartTabViewPager
+            android:id="@+id/viewPager"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"/>
+
+</LinearLayout>

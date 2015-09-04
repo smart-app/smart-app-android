@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width = device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title></title>
+    <link rel="stylesheet" href="../resource/css/common-5a02dbe297.css">
+</head>
+<body class="code">
+
+<div id="loading" class="loading" style="top:-120px">
+    <span class="outer"></span>
+</div>
+
+<script id="dataTemplate" type="text/html">
+    <div class="panel" style="margin-top: 0px;">
+        <ul class="list">
+            {{each data.list}}
+            <li class="activeable list-item" onclick="List.openWindow('{{$value.ArticleId}}','{{$value.Title}}')">
+                <img src="{{$value.icon}}" class="item-logo">
+
+                <div class="item-desc">
+                    <h2 class="item-title">{{$value.Title}}</h2>
+
+                    <p class="item-info">
+                        <span class="item-left">{{$value.Summary}}</span><span class="item-right"></span>
+                    </p>
+
+                    <p class="item-time">{{$value.CreateDate}}</p>
+                </div>
+            </li>
+            {{/each}}
+        </ul>
+    </div>
+</script>
+
+<div>
+    <div id="listPanel"></div>
+    <div id="pagerBottom"
+         style="display:none; font-size: 13px; height: 40px;line-height: 40px;text-align: center;vertical-align: middle"></div>
+    <div style="padding-bottom: 120px;background-color: white"></div>
+</div>
+
+
+<script src="../../../framework/common/common-783023b9b6.js"></script>
+<script src="../../../framework/artTemplate/art-bc7828ee49.js"></script>
+<script src="../../../framework/bridge/bridge-eca40e25d8.js"></script>
+<script src="../../../framework/component/pager/pager.js"></script>
+<script src="../resource/js/api-84e89c669f.js"></script>
+<script>!function (e) {
+    var t = {
+        init: function () {
+            var e = Utils.getParameter("m"), t = Utils.getParameter("c"), i = new Pager;
+            i.init(function (n) {
+                API.getList('list.php','list',e, t, '', i.pageIndex, i.pageSize, 1, function (e) {
+                    var t = {list: JSON.parse(e)};
+                    View.render("listPanel", "data", t), n(0 == t.list.length)
+                })
+            })
+        }, openWindow: function (e, t) {
+            var i = "file:///android_asset/app/web/codehelp/detail/detail.html?id=" + e + "&title=" + encodeURIComponent(t);
+            SmartNativeAPI.openWindow(t, i, {}, "common")
+        }
+    };
+    t.init(), e.List = t
+}(window);</script>
+</body>
+</html>

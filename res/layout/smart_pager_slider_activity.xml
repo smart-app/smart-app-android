@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:background="@color/white"
+        android:layout_marginBottom="-177dp"
+        android:id="@+id/layout"
+        android:orientation="vertical">
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/smart_blue"
+            android:orientation="vertical">
+
+        <RelativeLayout android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:focusable="true"
+                        android:id="@+id/layoutSearch"
+                        android:focusableInTouchMode="true"
+                        android:background="@color/smart_blue">
+
+            <EditText android:id="@+id/txtSearch"
+                      android:hint="输入搜索关键字"
+                      android:layout_marginTop="16dp"
+                      android:layout_marginBottom="8dp"
+                      android:paddingLeft="8dp"
+                      android:background="@drawable/smart_circle_cornel"
+                      android:layout_width="250dip"
+                      android:layout_height="wrap_content"
+                      android:textSize="14sp"
+                      android:paddingTop="8dip"
+                      android:paddingBottom="8dip"
+                      android:gravity="center_vertical"/>
+
+        </RelativeLayout>
+        <!--放置PagerSlidingTabStrip的布局，应该用LinearLayout，
+        而不是用RelativeLayout！ 放置在Activity中的时候，用RelativeLayout是没有问题的-->
+        <com.smart.app.vendor.pagerslider.PagerSlidingTabStrip
+                android:id="@+id/pagerTabs"
+                android:layout_width="match_parent"
+                android:layout_height="48dip"
+                android:background="@color/smart_blue"/>
+    </LinearLayout>
+
+    <com.smart.app.framework.ui.control.tab.SmartTabViewPager
+                android:id="@+id/viewPager"
+                android:background="@color/blue"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"/>
+
+</LinearLayout>

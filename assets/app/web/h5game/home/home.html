@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width = device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title></title>
+    <link rel="stylesheet" href="../../../resource/css/global-022e376e21.css">
+    <link rel="stylesheet" href="../../../framework/vendor/swiper/css/swiper.css">
+</head>
+<body style="background-color: #F6F6F6;">
+
+<div id="loading" class="loading">
+    <span class="outer"></span>
+</div>
+
+
+<script id="swiperTemplate" type="text/html">
+    <div class="swiper-container" style="height: {{swiper.height}}px">
+        <div class="swiper-wrapper">
+            {{each swiper.list}}
+                <div class="swiper-slide">
+                    <img src="{{$value.screenshotUrl}}" />
+                </div>
+            {{/each}}
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+    </div>
+</script>
+
+<script id="dataTemplate" type="text/html">
+    <div class="panel" style="margin-top: 16px">
+        <div class="hd" onclick="Home.open('{{data.title}}','file:///android_asset/app/web/h5game/list/list.html')"><h2>{{data.title}}</h2><div class="more"><a href="#"></a></div></div>
+        {{each data.list}}
+        <div class="item-game">
+            <div class="pic"><img src="{{$value.gameIcon}}" width="60" height="60" alt=""></div>
+            <div class="con">
+                <div class="name">{{$value.longName}}</div>
+                <div class="info">{{$value.categoryName}}<span class="space">|</span>{{$value.hitCount}}人玩</div>
+                <div class="info">
+                    <p class="start-system">
+                        <span class="good"></span>
+                        <span class="good"></span>
+                        <span class="good"></span>
+                        <span class="soso"></span>
+                        <span></span>
+                    </p>({{$value.score}})
+                </div>
+            </div>
+            <div class="btns" onclick="Home.openWindow('{{$value.gameId}}','{{$value.shortName}}','{{$value.gameUrl}}')"><span class="btn-primary-green">玩一玩</span></div>
+        </div>
+        {{/each}}
+    </div>
+</script>
+
+<div id="swiperPanel"></div>
+<div id="recommendList"></div>
+<div id="newList"></div>
+<div id="hotList"></div>
+
+
+<script src="../../../framework/common/common-783023b9b6.js"></script>
+<script src="../../../framework/artTemplate/art-bc7828ee49.js" ></script>
+<script src="../../../framework/bridge/bridge-eca40e25d8.js" ></script>
+<script src="../../../framework/vendor/swiper/js/swiper.js" ></script>
+<script>!function(i){var t={domain:"http://999game.sinaapp.com/api/",getFreeList:function(i,t,e){SmartNativeAPI.httpPost(this.domain+"free.php",{action:"image",freeId:i,count:t},function(i){console.log(">>>getList getFreeList:"+JSON.stringify(i)),e(i)})},getList:function(i,t,e,n,o,a){SmartNativeAPI.httpPost(this.domain+"list.php",{action:"list",freeId:t,i:e,p:n,o:o},function(i){console.log(">>>getList response:"+JSON.stringify(i)),a(i)})},init:function(){t.getFreeList(100,5,function(i){var t=9*document.body.clientWidth/16,e={heigth:t,list:JSON.parse(i)};View.render("swiperPanel","swiper",e);new Swiper(".swiper-container",{pagination:".swiper-pagination",slidesPerView:1,paginationClickable:!0,spaceBetween:30,loop:!0});View.get("loading").style.display="none"}),t.getList(0,101,1,5,1,function(i){var t={title:"编辑推荐",list:JSON.parse(i)};View.render("recommendList","data",t)}),t.getList(0,0,1,5,1,function(i){var t={title:"最新游戏",list:JSON.parse(i)};View.render("newList","data",t)}),t.getList(0,0,1,5,2,function(i){var t={title:"热门游戏",list:JSON.parse(i)};View.render("hotList","data",t)})},openWindow:function(i,t,e){SmartNativeAPI.openWindow(t,e,{gameId:i,gameName:t},"common")},open:function(i,t){SmartNativeAPI.openWindow(i,t,{},"common")}};t.init(),i.Home=t}(window);</script>
+
+</body>
+</html>
